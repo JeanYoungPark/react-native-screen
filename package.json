@@ -9,6 +9,7 @@
         "web": "expo start --web"
     },
     "dependencies": {
+        "@types/react-router": "^5.1.20",
         "expo": "~51.0.2",
         "expo-constants": "~16.0.1",
         "expo-linking": "~6.3.1",
