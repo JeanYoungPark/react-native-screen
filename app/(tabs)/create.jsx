@@ -25,10 +25,10 @@ const Create = () => {
             aspect: [4, 3],
             quality: 1,
         });
-
+        console.log(result);
         if (!result.canceled) {
             if (selectType === "image") {
-                setForm({ ...form, thumbnail: result.thumbnail[0] });
+                setForm({ ...form, thumbnail: result.assets[0] });
             }
 
             if (selectType === "video") {
