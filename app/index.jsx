@@ -10,9 +10,8 @@ import { useEffect } from "react";
 export default function App() {
     const { isLoading, isLoggedIn } = useGlobalContext();
 
-    // if (!isLoading && isLoggedIn) return <Redirect href='/home' />;
+    if (!isLoading && isLoggedIn) return <Redirect href='/home' />;
 
-    return <Redirect href='/home' />;
     return (
         <SafeAreaView className='bg-primary h-full'>
             <ScrollView contentContainerStyle={{ height: "100%" }}>
@@ -25,7 +24,9 @@ export default function App() {
                         </Text>
                         <Image source={images.path} className='w-[136px] h-[15px] absolute -bottom-2 -right-8' resizeMode='contain' />
                     </View>
-                    <Text className='text-sm font-pregular text-gray-100 mt-7 text-center'>Where creativity meets innovation: embark on a journey of limitless exploration with Aora</Text>
+                    <Text className='text-sm font-pregular text-gray-100 mt-7 text-center'>
+                        Where creativity meets innovation: embark on a journey of limitless exploration with Aora
+                    </Text>
                     <CustomButton title='continue with Email' handlePress={() => router.push("/sign-in")} containerStyles='w-full mt-7' />
                 </View>
             </ScrollView>
