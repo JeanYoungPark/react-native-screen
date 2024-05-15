@@ -6,7 +6,7 @@ import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
-import { createVideo } from "../../lib/appwrite";
+import { createVideoPost } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Create = () => {
@@ -45,7 +45,7 @@ const Create = () => {
         setUploading(true);
 
         try {
-            await createVideo({ ...form, userId: user.$id });
+            await createVideoPost({ ...form, userId: user.$id });
             Alert.alert("Alert", "Post uploaded successfully");
             router.push("/home");
         } catch (error) {
