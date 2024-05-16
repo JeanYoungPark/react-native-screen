@@ -1,5 +1,5 @@
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
-import React, { useEffect } from "react";
+import { View, Text, FlatList, TouchableOpacity, Image, RefreshControl } from "react-native";
+import React, { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getUserPosts, signOut } from "../../lib/appwrite";
@@ -12,7 +12,8 @@ import InfoBox from "../../components/InfoBox";
 
 const Profile = () => {
     const { user, setUser, setIsLoggedIn } = useGlobalContext();
-    const { data: posts } = useAppwrite(() => getUserPosts(user.$id));
+    const { data: posts, refetch } = useAppwrite(() => getUserPosts(user.$id));
+    const [refreshing, setRefreshing] = useState(false);
 
     const logout = async () => {
         await signOut();
@@ -20,6 +21,12 @@ const Profile = () => {
         setIsLoggedIn(false);
 
         router.replace("/sign-in");
+    };
+
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await refetch();
+        setRefreshing(false);
     };
 
     return (
@@ -44,6 +51,7 @@ const Profile = () => {
                     </View>
                 )}
                 ListEmptyComponent={() => <EmptyState title='No Video Found' subtitle='No videos found for this search query' />}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             />
         </SafeAreaView>
     );
