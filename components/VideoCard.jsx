@@ -34,7 +34,7 @@ const VideoCard = ({
 
             {play ? (
                 <Video
-                    source={{ uri: item.video }}
+                    source={{ uri: video }}
                     className='w-full h-60 rounded-xl mt-3'
                     ResizeMode={ResizeMode.CONTAIN}
                     useNativeControls
@@ -49,7 +49,7 @@ const VideoCard = ({
                 <TouchableOpacity
                     activeOpacity={0.7}
                     onPress={() => setPlay(true)}
-                    className='w-full h-60 rounded-xl mt-3 relative justify-center items-center'>
+                    className='w-full h-60 rounded-xl mt-3 mb-3 relative flex justify-center items-center overflow-hidden'>
                     <Image source={{ uri: thumbnail }} className='w-full h-full rounded-xl mt-3' resizeMode='cover' />
                     <Image source={icons.play} className='w-12 h-12 absolute' resizeMode='contain' />
                 </TouchableOpacity>
